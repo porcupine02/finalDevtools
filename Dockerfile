@@ -1,20 +1,23 @@
-FROM node:18-alpine
-FROM jenkins/jenkins  
-USER jenkins  
-RUN curl -L \  
-  "https://github.com/docker/compose/releases/download/1.25.3/docker-compose-$(uname -s)-$(uname -m)" \  
-  -o /usr/local/bin/docker-compose \  
-  && chmod +x /usr/local/bin/docker-compose  
-RUN apk add --no-cache docker-compose
+# Use a Node.js base image
+FROM node:16-alpine
 
+# Set working directory
 WORKDIR /finaldevtools
 
-EXPOSE 8081
+# Copy package files
+COPY package*.json ./
 
-COPY package.json package-lock.json ./
+# Install dependencies
+RUN npm install --only=production && npm cache clean --force
 
-RUN npm install --silent
+# Install MongoDB tools (required for MongoDB Atlas connection string)
+RUN apk add --no-cache mongodb-tools
 
-COPY . ./
+# Copy application code
+COPY . .
 
-CMD ["npm", "run", "dev"]
+# Expose port (optional, adjust as needed)
+EXPOSE 3000
+
+# Define start command
+CMD ["node", "app.js"]
