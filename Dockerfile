@@ -1,5 +1,7 @@
 FROM node:18-alpine
 
+RUN apk add --no-cache docker-compose
+
 WORKDIR /finaldevtools
 
 EXPOSE 8081
