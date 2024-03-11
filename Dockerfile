@@ -1,23 +1,13 @@
-# Use a Node.js base image
-FROM node:16-alpine
+FROM node:18-alpine
 
-# Set working directory
-WORKDIR /app
+WORKDIR /finaldevtools
 
-# Copy package files
-COPY package*.json ./
+EXPOSE 8081
 
-# Install dependencies
-RUN npm install --only=production && npm cache clean --force
+COPY package.json package-lock.json ./
 
-# Install MongoDB tools (required for MongoDB Atlas connection string)
-RUN apk add --no-cache mongodb-tools
+RUN npm install --silent
 
-# Copy application code
-COPY . .
+COPY . ./
 
-# Expose port (optional, adjust as needed)
-EXPOSE 3000
-
-# Define start command
-CMD ["node", "app.js"]
+CMD ["npm", "run", "dev"]
