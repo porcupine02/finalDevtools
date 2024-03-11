@@ -4,8 +4,8 @@ pipeline {
     environment {
         // Define variables
         DOCKER_CREDENTIALS = credentials('dockerhub')
-        BACKEND_IMAGE = 'fern018/backend-1:latest'
-        FRONTEND_IMAGE = 'fern018/frontend-1:latest'
+        BACKEND_IMAGE = 'fern018/backend:latest'
+        FRONTEND_IMAGE = 'fern018/frontend:latest'
     }
 
 
