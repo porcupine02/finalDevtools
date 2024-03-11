@@ -2,8 +2,8 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_IMAGE    = 'noychiffon05/fastapi-webhook:latest'
-        REMOTE_HOST     = 'g64070172@34.142.247.166'
+        DOCKER_IMAGE    = 'fern018/github-webhook:latest'
+        REMOTE_HOST     = 'g64070018@34.87.96.185'
         SSH_CREDENTIALS = 'ssh-prod_instance'
     }
 
@@ -31,7 +31,7 @@ pipeline {
                     sh "ssh -o StrictHostKeyChecking=no $REMOTE_HOST 'docker stop \$(docker ps -a -q) || true'"
                     sh "ssh -o StrictHostKeyChecking=no $REMOTE_HOST 'docker rm \$(docker ps -a -q) || true'"
                     sh "ssh -o StrictHostKeyChecking=no $REMOTE_HOST 'docker rmi \$(docker images -q) || true'"
-                    sh "ssh -o StrictHostKeyChecking=no $REMOTE_HOST 'docker run -d --name fastapi-webhook -p 8085:80 $DOCKER_IMAGE'"
+                    sh "ssh -o StrictHostKeyChecking=no $REMOTE_HOST 'docker run -d --name github-webhook -p 8085:80 $DOCKER_IMAGE'"
                     sh "ssh -o StrictHostKeyChecking=no $REMOTE_HOST 'docker ps -a'"
                 }
             }
