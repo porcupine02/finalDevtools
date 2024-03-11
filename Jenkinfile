@@ -82,7 +82,7 @@ pipeline {
         stage('Deploy') {
                     steps {
                         // Pull the Docker images from Docker Hub and run the containers using docker-compose
-                        dir('./finalDevtools') {
+                        dir('./') {
                             script {
                                 // Pull Docker images from Docker Hub
                                 sh 'docker-compose pull'
