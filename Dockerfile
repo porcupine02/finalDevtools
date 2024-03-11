@@ -1,19 +1,23 @@
-FROM node:latest as build
+# Use a Node.js base image
+FROM node:16-alpine
 
+# Set working directory
 WORKDIR /app
 
+# Copy package files
 COPY package*.json ./
 
-RUN npm install
+# Install dependencies
+RUN npm install --only=production && npm cache clean --force
 
+# Install MongoDB tools (required for MongoDB Atlas connection string)
+RUN apk add --no-cache mongodb-tools
+
+# Copy application code
 COPY . .
 
-RUN npm run build
+# Expose port (optional, adjust as needed)
+EXPOSE 3000
 
-FROM nginx:alpine
-
-COPY --from=build /app/dist /usr/share/nginx/html
-
-EXPOSE 80
-
-CMD ["nginx", "-g", "daemon off;"]
+# Define start command
+CMD ["node", "app.js"]
