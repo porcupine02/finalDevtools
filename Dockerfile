@@ -1,6 +1,6 @@
 FROM node:18-alpine
 
-WORKDIR /finaldevtools
+WORKDIR /frontend
 
 EXPOSE 8081
 
