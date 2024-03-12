@@ -147,7 +147,7 @@ export default {
     
 
     axios
-      .get("http://localhost:4000/places")
+      .get("http://localhost:3001/places")
       .then((response) => {
         this.responseData = response.data;
         this.items2 = this.responseData;
