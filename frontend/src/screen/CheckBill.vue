@@ -191,7 +191,7 @@ export default {
     async fetchBills() {
       try {
         console.log("fetch bills");
-        const response = await axios.get("http://localhost:4000/bills");
+        const response = await axios.get("http://34.125.33.180:3001/bills");
         this.bills = response.data; // Store the retrieved comments data in the 'comments' array
         console.log(this.bills);
         this.countText = this.bills.length;

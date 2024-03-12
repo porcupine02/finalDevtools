@@ -76,7 +76,7 @@ export default {
       };
 
       axios
-        .post("http://localhost:4000/login", data)
+        .post("http://34.125.33.180:3001/login", data)
         .then((response) => {
           this.responseData = response.data;
 
