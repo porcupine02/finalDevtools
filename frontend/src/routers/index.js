@@ -9,8 +9,8 @@ import SearchPage from '@/screen/SearchPage.vue'
 import AddTour from '@/screen/AddTour.vue'
 import AllTourCalendar from '@/screen/AllTourCalendar.vue'
 import DetailEachPage from '@/screen/DetailEachPage.vue'
-import Checkbill from "@/screen/CheckBill.vue"
-// /Users/porcupine02/Documents/GitHub/DevtoolProject/travel/frontend/src/
+import Home from '@/screen/Home.vue'
+import Tour from '@/screen/Tour.vue'
 // import Home from '@/components/Home.vue'
 
 const router = createRouter({
@@ -30,7 +30,7 @@ const router = createRouter({
         },
 
         {
-            path : '/listConfirm',
+            path : '/listConfirm/:tripId',
             component : listConfirm
         },
         {
@@ -55,11 +55,15 @@ const router = createRouter({
             name: 'Detail',
             component : DetailEachPage
         },
-       
         {
-            path : '/bills',
-            component : Checkbill
-        }
+            path : '/Home',
+            component : Home
+        },
+        {
+            path : '/Tour/:name',
+            component : Tour,
+        },
+
     ]
 })
 

@@ -1,10 +1,24 @@
+<script setup>
+import HeaderWeb from "../components/HeaderWeb.vue";
+import CheckBill from "../screen/CheckBill.vue";
+</script>
+
+
 <template>
   <div>
-    <i class="fa fa-bars"></i>
-    <label class="text-2xl">List You Trip</label>
+    <button
+      class="flex justify-end w-full p-3"
+      v-if="showCheckBill"
+      @click="toggleCheckBill"
+    >
+      <i class="fa-solid fa-times" style="color: red"></i>
+    </button>
+    <CheckBill v-if="showCheckBill" />
+    <HeaderWeb :toggleCheckBill="toggleCheckBill" v-if="!showCheckBill" />
+
 
     <!-- Name Trip -->
-    <div class="m-5">
+    <div class="m-5" v-if="!showCheckBill">
       <label class="text-2xl">Name Trip</label>
       <div class="flex items-center justify-center my-2">
         <input
@@ -95,7 +109,16 @@
           สร้างทริป
         </button>
       </router-link>
+      <router-link to="/">
+        <button
+          type="submit"
+          class="flex justify-center mt-3 w-full px-6 py-2 text-[#4C3FB6] border border-[#4C3FB6] rounded-full md:mt-0 md:w-auto md:mx-2"
+        >
+          ยกเลิก
+        </button>
+      </router-link>
     </div>
+    
   </div>
 </template>
 
@@ -104,6 +127,7 @@ import axios from "axios";
 export default {
   data() {
     return {
+      showCheckBill : false,
       searchTerm: "",
       searchResults: [],
       selectedTrips: [],
@@ -165,6 +189,10 @@ export default {
           alert("Unable to get trip ID from the response.");
         }
       });
+    },
+
+    toggleCheckBill() {
+      this.showCheckBill = !this.showCheckBill;
     },
   },
 };

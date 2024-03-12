@@ -1,5 +1,9 @@
 <template>
+  
+
   <div id="app">
+
+
     <div class="bg-white items-center justify-center py-5">
       <h4 class="text-2xl text-center justify-center font-semibold text-[#3A4646]">Tour details</h4>
       <h4 class="text-xl text-center justify-center font-semibold text-[#3A4646]">{{ this.detail.Tour.nameTrip }}</h4>
@@ -26,6 +30,19 @@
           <label class="date text-[#E5E6E1] pl-2">{{ eachtrip.province }}</label>
         </div>
         <h4 class="justify-center text-[#E5E6E1]">{{ eachtrip.price }} ฿</h4>
+
+      </div>
+
+      <div class="pt-3 text-white text-center justify-center items-center flex">
+        <button
+          type="submit"
+          class="bg-[#3A4646] text-white text-sm  tracking-wider block w-3/4 rounded-full"
+        >
+          <RouterLink :to="{
+              path: '/Home',
+              component: Home,
+            }" >Home</RouterLink>
+        </button>
       </div>
     </div>
   </div>

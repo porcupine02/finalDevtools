@@ -1,7 +1,25 @@
+<script setup>
+import HeaderWeb from "../components/HeaderWeb.vue";
+import CheckBill from "../screen/CheckBill.vue";
+</script>
+
 <template>
   <div id="app">
+
+    <button
+      class="flex justify-end w-full p-3"
+      v-if="showCheckBill"
+      @click="toggleCheckBill"
+    >
+      <i class="fa-solid fa-times" style="color: red"></i>
+    </button>
+    <CheckBill v-if="showCheckBill" />
+    <HeaderWeb :toggleCheckBill="toggleCheckBill" v-if="!showCheckBill" />
     <!--room and calendar-->
-    <div class="m-2">
+
+
+    
+    <div class="m-2" :style="{ display: !showCheckBill ? 'block' : 'none' }">
       <div class="my-4">
         <!--calendar-->
         <div class="flex flex-row items-center justify-center">
@@ -111,7 +129,13 @@
             type="text"
             class="border-2 border-gray-100 focus:outline-none bg-none block w-full py-2 px-4 rounded-lg focus:border-gray-700"
           >
-            <option v-for="(place, index) in places" :key="place.id" :value="index">{{ place.nameTrip }}</option>
+            <option
+              v-for="(place, index) in places"
+              :key="place.id"
+              :value="index"
+            >
+              {{ place.nameTrip }}
+            </option>
           </select>
         </div>
         <div></div>
@@ -132,13 +156,20 @@
             ></textarea>
           </div> -->
         <div class="py-6 text-white">
-          <button
-            type="submit"
-            class="bg-[#3A4646] text-white tracking-wider block w-full p-2 rounded-lg focus:border-gray-700"
-            @click="addEvents"
+          <router-link
+            :to="{
+              path: '/AllTourCalendar',
+              component: AllTourCalendar,
+            }"
           >
-            Save
-          </button>
+            <button
+              type="submit"
+              class="bg-[#3A4646] text-white tracking-wider block w-full p-2 rounded-lg focus:border-gray-700"
+              @click="addEvents"
+            >
+              Save
+            </button>
+          </router-link>
         </div>
       </div>
     </div>
@@ -150,6 +181,7 @@ import axios from "axios";
 export default {
   data() {
     return {
+      showCheckBill : false,
       places: [],
       today: "",
       month: 0,
@@ -165,14 +197,14 @@ export default {
       startdate: "",
       date1: "",
       date2: "",
-      selecttour: {}
+      selecttour: {},
     };
   },
   created() {
     (this.today = new Date()),
       (this.month = new Date().getMonth()),
       (this.year = new Date().getFullYear());
-      this.fetchplace();
+    this.fetchplace();
   },
   mounted() {
     this.gototoday();
@@ -324,7 +356,6 @@ export default {
       let days = valdate[2] * 1;
       this.getallday();
       this.getactiveday(days);
-      
     },
     getactiveday(date) {
       const day = new Date(this.year, this.month, date);
@@ -363,7 +394,7 @@ export default {
       const data = {
         StartDate: this.date1,
         EndDate: this.date2,
-        Tour: this.places[this.selecttour]
+        Tour: this.places[this.selecttour],
       };
       axios
         .post("http://localhost:4000/addtour", data)
@@ -372,7 +403,7 @@ export default {
 
           this.StartDate = "";
           this.EndDate = "";
-          this.selecttour={};
+          this.selecttour = {};
           console.log(this.responseData);
         })
         .catch((error) => {
@@ -380,17 +411,19 @@ export default {
         });
     },
     async fetchplace() {
-        console.log("place")
+      console.log("place");
       try {
-        
-        const response =  await axios.get('http://localhost:4000/listTrips');
+        const response = await axios.get("http://localhost:4000/trips");
         this.places = response.data; // Store the retrieved comments data in the 'comments' array
-        console.log(this.places)
-        this.countplace = this.places.length
+        console.log(this.places);
+        this.countplace = this.places.length;
       } catch (error) {
-        console.error('Error fetching comments:', error);
+        console.error("Error fetching comments:", error);
       }
-    }
+    },
+    toggleCheckBill() {
+      this.showCheckBill = !this.showCheckBill;
+    },
   },
 };
 </script>

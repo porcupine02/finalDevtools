@@ -1,26 +1,30 @@
 <script setup>
 // import HeaderWeb from '../components/HeaderWeb.vue'
 import HeaderWeb from "../components/HeaderWeb.vue";
-import CheckBill from "../screen/CheckBill.vue"
+import CheckBill from "../screen/CheckBill.vue";
 </script>
 
 <template>
   <div>
-    <button class=" flex justify-end w-full p-3" v-if="showCheckBill"  @click="toggleCheckBill"> <i class="fa-solid fa-times" style="color: red" ></i>
- </button>
+    <button
+      class="flex justify-end w-full p-3"
+      v-if="showCheckBill"
+      @click="toggleCheckBill"
+    >
+      <i class="fa-solid fa-times" style="color: red"></i>
+    </button>
     <CheckBill v-if="showCheckBill" />
-    <HeaderWeb :toggleCheckBill="toggleCheckBill" v-if="!showCheckBill"/>
+    <HeaderWeb :toggleCheckBill="toggleCheckBill" :title="'Search'" v-if="!showCheckBill" />
     <div class="relative flex justify-center p-5" v-if="!showCheckBill">
       <input
         type="text"
         placeholder="Search"
         class="w-full border-[#DFDFDF] rounded-md pl-10 pr-4 py-4 focus:border-blue-500"
         v-model="searchQuery"
-        
       />
 
-      <div class="absolute inset-y-0 left-0 ml-[25px] pl-3 flex items-center" >
-        <i class="fa-solid fa-magnifying-glass" style="color: #6f7789" ></i>
+      <div class="absolute inset-y-0 left-0 ml-[25px] pl-3 flex items-center">
+        <i class="fa-solid fa-magnifying-glass" style="color: #6f7789"></i>
       </div>
     </div>
 
@@ -49,19 +53,17 @@ import CheckBill from "../screen/CheckBill.vue"
       </div>
     </div>
 
-    <div class="relative" v-if="!showCheckBill" >
+    <div class="relative" v-if="!showCheckBill">
       <div class="flex items-center">
         <h1 class="text-[26px] font-bold text-black mx-5">Recommend</h1>
-        <div class="w-full justify-end items-center  p-5 flex ">
-         <router-link to="/listYourtrips"> <p>Trip</p>  </router-link> 
-        <i class="fa-solid fa-chevron-right" style="color: #6f7789" > </i>
+        <div class="w-full justify-end items-center p-5 flex">
+          <router-link to="/listYourtrips"> <p>Trip</p> </router-link>
+          <i class="fa-solid fa-chevron-right" style="color: #6f7789"> </i>
         </div>
-        
       </div>
-     
 
       <div class="flex flex-wrap justify-center m-5 grid grid-cols-2 gap-4">
-        <div v-for="(item, index) in filteredItems" :key="index"> 
+        <div v-for="(item, index) in filteredItems" :key="index">
           <div
             class="w-[195px] h-[195px] rounded-[13px] overflow-hidden shadow-lg"
           >
@@ -119,18 +121,17 @@ export default {
       selectedCategory: null,
       showCheckBill: false,
       items: [
-      {
+        {
           imageUrl:
             "https://www.photoschoolthailand.com/wp-content/uploads/2020/02/Beach-photography_2.jpg",
           name: "all",
-          cate: ''
+          cate: "",
         },
         {
           imageUrl:
             "https://www.photoschoolthailand.com/wp-content/uploads/2020/02/Beach-photography_2.jpg",
           name: "sea",
-          cate: 'sea'
-
+          cate: "sea",
         },
         {
           imageUrl:
@@ -138,18 +139,20 @@ export default {
           name: "moutain",
           cate: "moutain",
         },
-       
       ],
       items2: [],
     };
   },
   created() {
+    
+
     axios
       .get("http://localhost:4000/places")
       .then((response) => {
         this.responseData = response.data;
         this.items2 = this.responseData;
         console.log(this.responseData);
+
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
@@ -158,28 +161,29 @@ export default {
 
   methods: {
     filterCategory(category) {
-      console.log(category)
+      console.log(category);
       this.selectedCategory = category.toLowerCase();
     },
     toggleCheckBill() {
       this.showCheckBill = !this.showCheckBill;
-    }
+    },
   },
 
   computed: {
     filteredItems() {
-  return this.items2.filter((item) => {
-    const matchesSearch = item.name.toLowerCase().includes(this.searchQuery.toLowerCase()); 
-    const matchesCategory =
-      !this.selectedCategory ||
-      item.category.toLowerCase() === this.selectedCategory.toLowerCase();
+      return this.items2.filter((item) => {
+        const matchesSearch = item.name
+          .toLowerCase()
+          .includes(this.searchQuery.toLowerCase()) ||  item.province.toLowerCase().includes(this.searchQuery.toLowerCase());
+        const matchesCategory =
+          !this.selectedCategory ||
+          item.category.toLowerCase() === this.selectedCategory.toLowerCase();
 
-    // const matchesProvince = item.province.toLowerCase().includes(this.searchQuery.toLowerCase());
+        // const matchesProvince = item.province.toLowerCase().includes(this.searchQuery.toLowerCase());
 
-    return matchesSearch && matchesCategory ;
-  });
-},
-
+        return matchesSearch && matchesCategory;
+      });
+    },
   },
 };
 </script>

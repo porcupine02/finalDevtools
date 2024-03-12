@@ -53,10 +53,19 @@ import axios from "axios";
 export default {
   data() {
     return {
+      use : '',
       email: "",
       password: "",
       responseData: [],
     };
+  },
+
+  created() {
+      this.user = localStorage.getItem("token")
+      if(this.user){
+        this.$router.push("/");
+        
+      }    
   },
 
   methods: {

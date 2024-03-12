@@ -1,9 +1,9 @@
 <template>
-  <div class="flex flex-col min-h-screen bg-white">
+  <div class="flex flex-col min-h-screen bg-white items-center justify-center">
     <div class="flex flex-1 items-center justify-center">
       <div class="">
         <div class="text-center">
-          <h1 class="text-[39px] text-black uppercase">Register</h1>
+          <h1 class="text-[39px] text-black uppercase text-center">Register</h1>
           <div class="flex items-center justify-center mb-2">
             <img src="@/assets/rafiki.png" alt="" />
           </div>
@@ -34,7 +34,7 @@
               v-model="confirmPassword"
             />
           </div>
-          <div class="py-10">
+          <div class="pt-10">
             <button
               type="submit"
               class="bg-[#C1CB9C] text-[#3A4646] tracking-wider block w-full p-2 rounded-lg focus:border-gray-700 hover:bg-[#C2D189]"
@@ -43,6 +43,12 @@
               Get started
             </button>
           </div>
+          <p class="text my-2 flex flex-row items-center justify-center">
+            Already have an account?
+            <router-link to="/login">
+              <p class="text-[#808000] ml-2">Login</p></router-link
+            >
+          </p>
         </div>
       </div>
     </div>
@@ -60,6 +66,14 @@ export default {
       confirmPassword: "",
       responseData: [],
     };
+  },
+
+  created() {
+      this.user = localStorage.getItem("token")
+      if(this.user){
+        this.$router.push("/");
+        
+      }    
   },
 
   methods: {

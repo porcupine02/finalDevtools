@@ -1,9 +1,25 @@
+<script setup>
+import HeaderWeb from "../components/HeaderWeb.vue";
+import CheckBill from "../screen/CheckBill.vue";
+</script>
+
 <template>
   <div>
-    <header>
+
+
+    <button
+      class="flex justify-end w-full p-3"
+      v-if="showCheckBill"
+      @click="toggleCheckBill"
+    >
+      <i class="fa-solid fa-times" style="color: red"></i>
+    </button>
+    <CheckBill v-if="showCheckBill" />
+    <HeaderWeb :toggleCheckBill="toggleCheckBill" v-if="!showCheckBill" />
+    <!-- <header>
       <i class="fa fa-bars"></i>
       <label class="text-2xl">List Your Trip</label>
-    </header>
+    </header> -->
 
     <!-- Name -->
     <div class="mx-5 my-5">
@@ -41,8 +57,8 @@
       <div class="flex justify-end">
       <router-link
         :to="{
-          path: '/AllTourCalendar',
-          component: AllTourCalendar,
+          path: '/AddTour',
+          component: AddTour,
         }"
       >
         <button
@@ -50,7 +66,7 @@
           @click="addTrip()"
           class="flex justify-center mt-3 w-full px-6 py-2 text-[#4C3FB6] border border-[#4C3FB6] rounded-full md:mt-0 md:w-auto md:mx-2"
         >
-          ไปหน้ามะปราง
+          AddTour
         </button>
       </router-link>
     </div>
@@ -65,6 +81,7 @@ export default {
   props: ['myProp'],
   data() {
     return {
+      showCheckBill : false,
       places: [],
       nameplace: "",
     };
@@ -78,7 +95,7 @@ export default {
         console.log("place")
         console.log("plance3", this.places)
       try { 
-        console.log(this.$route.params)
+        console.log("koi",this.$route.params)
         const response =  await axios.get(`http://localhost:4000/place/${this.$route.params.tripId}`);
         
         this.places = response.data.selectedTrips
@@ -87,7 +104,12 @@ export default {
       } catch (error) {
         console.error('Error fetching comments:', error);
       }
-    }
+    },
+
+
+    toggleCheckBill() {
+      this.showCheckBill = !this.showCheckBill;
+    },
   },
 };
 </script>

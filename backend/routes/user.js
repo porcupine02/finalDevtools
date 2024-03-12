@@ -12,29 +12,38 @@ router.get("/users", async (req, res) => {
 });
 
 router.post("/register", async (req, res) => {
-    const {email, password} = req.body
-  const userResponse = await admin.auth().createUser({
-    email : email,
-    password : password,
-    emailVerified : false,
-    disabled : false
-  })
-
-  await admin.firestore().collection('Users').doc(userResponse.uid).set({
-    email: email,
-    password : password
-    // You can add more fields here as needed
-  });
-  res.status(200).json(userResponse)
+  const {email ,password} = req.body
+  console.log(req.body)
+  try {
+    const userResponse = await admin.auth().createUser({
+      email: email,
+      password: password,
+      emailVerified: false,
+      disabled: false
+    });
+  
+    await admin.firestore().collection('Users').doc(userResponse.uid).set({
+      email: email,
+      password: password
+      // You can add more fields here as needed
+    });
+  
+    res.status(200).json(userResponse);
+  } catch (error) {
+    // Handle error here
+    console.error(error);
+    res.status(500).json({ error: 'An error occurred while creating user' });
+  }
 });
 
 router.post("/login", async (req, res) => {
 
     const users = [];
     const { email, password } = req.body;
+    console.log(req.body)
 
 
-    const user = await admin.firestore().collection('Users').get();
+     const user = await admin.firestore().collection('Users').get();
 
     user.forEach((doc) => {
         const emailDb = doc.data().email;

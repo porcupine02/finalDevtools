@@ -1,6 +1,23 @@
+<script setup>
+import HeaderWeb from "../components/HeaderWeb.vue";
+import CheckBill from "../screen/CheckBill.vue";
+</script>
+
+
 <template>
   <div id="app">
-    <section class="text-center justify-center items-center bg-white py-5">
+
+    <button
+      class="flex justify-end w-full p-3"
+      v-if="showCheckBill"
+      @click="toggleCheckBill"
+    >
+      <i class="fa-solid fa-times" style="color: red"></i>
+    </button>
+    <CheckBill v-if="showCheckBill" />
+    <HeaderWeb :toggleCheckBill="toggleCheckBill" v-if="!showCheckBill" />
+
+    <section class="text-center justify-center items-center bg-white py-5" v-if="!showCheckBill">
       <h5>Good Morning</h5>
       <div class="flex text-center justify-center">
         <h3 class="bg-[#C1CB9C] rounded-full px-3 my-3">{{ this.year }}</h3>
@@ -98,6 +115,7 @@ import DetailCard from "../components/DetailtourCard.vue";
 export default {
   data() {
     return {
+      showCheckBill : false,
       places: [],
       today: "",
       month: 0,
@@ -338,7 +356,11 @@ export default {
       } catch (error) {
         console.error('Error fetching comments:', error);
       }
-    }
+    },
+
+    toggleCheckBill() {
+      this.showCheckBill = !this.showCheckBill;
+    },
   },
 };
 </script>
