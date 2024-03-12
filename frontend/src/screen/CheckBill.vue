@@ -207,7 +207,7 @@ export default {
     async fetchMember() {
       try {
         console.log("fetch bills");
-        const response = await axios.get("http://localhost:4000/memberBill");
+        const response = await axios.get("http://34.125.33.180:3001/memberBill");
         this.people = response.data; // Store the retrieved comments data in the 'comments' array
         console.log("this.people", this.people);
         this.countText = this.bills.length;
@@ -223,7 +223,7 @@ export default {
     cal() {
       console.log("this is bills from data", this.bills);
       axios
-        .post("http://localhost:4000/bills", { bills: this.bills })
+        .post("http://34.125.33.180:3001/bills", { bills: this.bills })
         .then((response) => {
           console.log("POST request successful:", response.data);
         })
@@ -266,7 +266,7 @@ export default {
       if (this.newMember != "") {
         this.people.push(this.newMember);
         axios
-          .post("http://localhost:4000/memberBill", { member: this.newMember })
+          .post("http://34.125.33.180:3001/memberBill", { member: this.newMember })
           .then((response) => {
             console.log("POST request successful:", response.data);
             this.fetchMember();
@@ -306,7 +306,7 @@ export default {
       });
       console.log("list menu", this.listMenu);
       axios
-        .post("http://localhost:4000/bills", { bills: this.listMenu })
+        .post("http://34.125.33.180:3001/bills", { bills: this.listMenu })
         .then((response) => {
           console.log("POST request successful:", response.data);
           this.fetchBills();
@@ -324,7 +324,7 @@ export default {
       const memberID = this.people[index].id;
       console.log("this.people[index].id", memberID);
       axios
-        .delete(`http://localhost:4000/memberBill/${memberID}`)
+        .delete(`http://34.125.33.180:3001/memberBill/${memberID}`)
         .then((response) => {
           console.log("POST request successful:", response.data);
           this.fetchMember();
@@ -339,7 +339,7 @@ export default {
       this.listMenu.splice(index, 1);
       console.log("id id id id", this.bills[index].id);
       axios
-        .delete(`http://localhost:4000/bill/${this.bills[index].id}`)
+        .delete(`http://34.125.33.180:3001/bill/${this.bills[index].id}`)
         .then((response) => {
           console.log("POST request successful:", response.data);
           this.newListMenu = "";

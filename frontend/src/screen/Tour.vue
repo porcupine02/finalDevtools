@@ -88,7 +88,7 @@ export default {
       try {
         this.nameSelected = this.$route.params.name
         console.log(this.nameSelected)
-        const response = await axios.get(`http://localhost:4000/places/${this.nameSelected}`);
+        const response = await axios.get(`http://34.125.33.180:3001/places/${this.nameSelected}`);
         this.place = response.data; // Store the retrieved comments data in the 'comments' array
         console.log(this.place)
       } catch (error) {

@@ -397,7 +397,7 @@ export default {
         Tour: this.places[this.selecttour],
       };
       axios
-        .post("http://localhost:4000/addtour", data)
+        .post("http://34.125.33.180:3001/addtour", data)
         .then((response) => {
           this.responseData = response.data;
 
@@ -413,7 +413,7 @@ export default {
     async fetchplace() {
       console.log("place");
       try {
-        const response = await axios.get("http://localhost:4000/trips");
+        const response = await axios.get("http://34.125.33.180:3001/trips");
         this.places = response.data; // Store the retrieved comments data in the 'comments' array
         console.log(this.places);
         this.countplace = this.places.length;
