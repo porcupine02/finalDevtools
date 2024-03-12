@@ -20,4 +20,4 @@ RUN npm run build
 EXPOSE 8081
 
 # Define the command to serve the production build of the frontend
-CMD ["npm", "run", "preview"]
+CMD ["npm", "run", "dev"]
