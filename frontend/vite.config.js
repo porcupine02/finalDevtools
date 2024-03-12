@@ -8,16 +8,16 @@ export default defineConfig({
   plugins: [
     vue(),
   ],
+  server: {
+    // Configure CORS headers
+    cors: {
+      origin: 'http://34.87.96.185:8081',
+      methods: ['GET', 'POST'],
+    },
+  },
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
-    },
-    server: {
-      // Configure CORS headers
-      cors: {
-        origin: 'http://34.87.96.185:8081/',
-        methods: ['GET', 'POST'],
-      },
-    },
+    }
   }
 })
