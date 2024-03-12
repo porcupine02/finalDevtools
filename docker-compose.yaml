@@ -5,7 +5,7 @@ services:
     build: backend/.
     image: fern018/backend:latest
     ports:
-      - "3000:3000"
+      - "3001:3001"
     restart: always
     networks:
       - ELnetwork
