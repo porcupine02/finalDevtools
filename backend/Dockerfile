@@ -17,4 +17,6 @@ COPY . .
 EXPOSE 3000
 
 # Define the command to run the backend server
-CMD ["node", "index.js"]
+
+CMD ["npx", "nodemon"]
+# CMD ["node", "index.js"]
