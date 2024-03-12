@@ -17,7 +17,7 @@ COPY . .
 RUN npm run build
 
 # Expose the port the app runs on
-EXPOSE 4000
+EXPOSE 8081
 
 # Define the command to serve the production build of the frontend
 CMD ["npm", "run", "serve"]
