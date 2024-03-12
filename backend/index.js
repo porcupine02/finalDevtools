@@ -31,4 +31,4 @@ app.use(placeRouter.router)
 app.use(billRouter.router)
 app.use(addtourRouter.router)
 
-app.listen(4000, () => console.log("Up & RUnning *4000"));
+app.listen(3001, () => console.log("Up & RUnning *4000"));
