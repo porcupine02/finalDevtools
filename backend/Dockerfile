@@ -18,5 +18,5 @@ EXPOSE 3001
 
 # Define the command to run the backend server
 
-CMD ["node", "index.js"]
+CMD ["run", "serve"]
 # CMD ["node", "index.js"]
