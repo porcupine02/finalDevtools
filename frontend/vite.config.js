@@ -34,20 +34,9 @@ export default defineConfig({
     orgin: "http://0.0.0.0:5173",
   },
   
-  // resolve: {
-  //   alias: {
-  //     '@': '/src'
-  //   }, 
-  //   server: {
-  //     proxy: {
-  //       '/': 'http://34.125.33.180:8081',
-  //     },
-
-  //     // Configure CORS headers
-  //     cors: {
-  //       origin: 'http://34.125.33.180:8081',
-  //       methods: ['GET', 'POST'],
-  //     },
-  //   }
-  // }
+  resolve: {
+    alias: {
+      '@': '/src'
+    }, 
+  }
 })
