@@ -55,19 +55,18 @@ import CheckBill from "../screen/CheckBill.vue";
                 ></tbody>
               </table>
             </div>
-            <div class="flex justify-center items-center">
-              <label class="text-[#3A4646] pr-2 font-semibold">Date :</label>
+            <div class="flex justify-center items-center p-2">
+              <!-- <label class="text-[#3A4646] pr-2 font-semibold">Date :</label> -->
               <input
                 type="date"
                 class="input input-date text-center"
-                style="width: 30%"
                 v-model="date1"
               />
               <label class="text-[#3A4646] px-2 font-semibold"> - </label>
               <input
                 type="date"
                 class="input input-date text-center"
-                style="width: 30%"
+                
                 v-model="date2"
               />
             </div>
