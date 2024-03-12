@@ -20,10 +20,10 @@ import CheckBill from "../screen/CheckBill.vue";
     <section class="text-center justify-center items-center bg-white py-5" v-if="!showCheckBill">
       <h5>Good Morning</h5>
       <div class="flex text-center justify-center">
-        <h3 class="bg-[#C1CB9C] rounded-full px-3 my-3">{{ this.year }}</h3>
+        <!-- <h3 class="bg-[#C1CB9C] rounded-full px-3 my-3">{{ this.year }}</h3> -->
       </div>
       <div class="flex text-center justify-center">
-        <h3 class="bg-[#C1CB9C] rounded-full px-3">{{ this.textmonth[this.month] }}</h3>
+        <!-- <h3 class="bg-[#C1CB9C] rounded-full px-3">{{ this.textmonth[this.month] }}</h3> -->
       </div>
     </section>
     <section>
