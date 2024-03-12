@@ -86,11 +86,11 @@ pipeline {
                             script {
                                 // Pull Docker images from Docker Hub
                                 sh 'docker-compose pull'
-                                sh 'docker push fern018/frontend'
-                                sh 'docker push fern018/backend'
+                                // sh 'docker push fern018/frontend'
+                                // sh 'docker push fern018/backend'
 
-                                // Run Docker containers using docker-compose
-                                sh 'docker-compose up -d  --build'
+                                // // Run Docker containers using docker-compose
+                                sh 'docker-compose up -d'
                             }
                         }
                     }
