@@ -23,21 +23,31 @@ export default defineConfig({
   plugins: [
     vue(),
   ],
+  preview: {
+    port: 5173,
+    strictPort: true,
+  },
+  server: {
+    port: 5173,
+    strictPort: true,
+    host: true,
+    orgin: "http://0.0.0.0:5173",
+  },
+  
+  // resolve: {
+  //   alias: {
+  //     '@': '/src'
+  //   }, 
+  //   server: {
+  //     proxy: {
+  //       '/': 'http://34.125.33.180:8081',
+  //     },
 
-  resolve: {
-    alias: {
-      '@': '/src'
-    }, 
-    server: {
-      proxy: {
-        '/': 'http://34.125.33.180:8081',
-      },
-
-      // Configure CORS headers
-      cors: {
-        origin: 'http://34.125.33.180:8081',
-        methods: ['GET', 'POST'],
-      },
-    }
-  }
+  //     // Configure CORS headers
+  //     cors: {
+  //       origin: 'http://34.125.33.180:8081',
+  //       methods: ['GET', 'POST'],
+  //     },
+  //   }
+  // }
 })
