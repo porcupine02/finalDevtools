@@ -11,9 +11,13 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
-    }, server: {
-      host: '0.0.0.0',
-      port: 8081,
+    },
+    server: {
+      // Configure CORS headers
+      cors: {
+        origin: 'http://34.87.96.185:8081/',
+        methods: ['GET', 'POST'],
+      },
     },
   }
 })
