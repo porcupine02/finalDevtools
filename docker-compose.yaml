@@ -14,7 +14,7 @@ services:
     build: frontend/.
     image: fern018/frontend:latest
     ports:
-      - "8081:8081"
+      - "5173:5173"
     networks:
       - ELnetwork
 
