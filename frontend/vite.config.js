@@ -35,7 +35,7 @@ export default defineConfig({
 
       // Configure CORS headers
       cors: {
-        origin: 'http://34.87.96.185:8081',
+        origin: 'http://34.125.33.180:8081',
         methods: ['GET', 'POST'],
       },
     }
