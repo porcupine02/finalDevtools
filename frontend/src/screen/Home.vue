@@ -231,7 +231,7 @@ export default {
     async fetchPlaces() {
       console.log("fetchplaces")
       try {
-        const response = await axios.get('http://34.125.33.180:3001/places');
+        const response = await axios.get('http://34.125.112.174:3001/places');
         this.places = response.data; // Store the retrieved comments data in the 'comments' array
         console.log(this.places)
       } catch (error) {

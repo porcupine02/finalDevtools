@@ -350,7 +350,7 @@ export default {
         console.log("place")
       try {
         
-        const response =  await axios.get('http://34.125.33.180:3001/addtour');
+        const response =  await axios.get('http://34.125.112.174:3001/addtour');
         this.places = response.data; // Store the retrieved comments data in the 'comments' array
         this.countplace = this.places.length
       } catch (error) {

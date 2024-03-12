@@ -55,7 +55,7 @@ import CheckBill from "../screen/CheckBill.vue";
                 ></tbody>
               </table>
             </div>
-            <div class="flex justify-center items-center p-2">
+            <div class="flex justify-center items-center py-2">
               <!-- <label class="text-[#3A4646] pr-2 font-semibold">Date :</label> -->
               <input
                 type="date"
@@ -396,7 +396,7 @@ export default {
         Tour: this.places[this.selecttour],
       };
       axios
-        .post("http://34.125.33.180:3001/addtour", data)
+        .post("http://34.125.112.174:3001/addtour", data)
         .then((response) => {
           this.responseData = response.data;
 
@@ -412,7 +412,7 @@ export default {
     async fetchplace() {
       console.log("place");
       try {
-        const response = await axios.get("http://34.125.33.180:3001/trips");
+        const response = await axios.get("http://34.125.112.174:3001/trips");
         this.places = response.data; // Store the retrieved comments data in the 'comments' array
         console.log(this.places);
         this.countplace = this.places.length;

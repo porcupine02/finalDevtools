@@ -96,7 +96,7 @@ export default {
         console.log("plance3", this.places)
       try { 
         console.log("koi",this.$route.params)
-        const response =  await axios.get(`http://34.125.33.180:3001/place/${this.$route.params.tripId}`);
+        const response =  await axios.get(`http://34.125.112.174:3001/place/${this.$route.params.tripId}`);
         
         this.places = response.data.selectedTrips
         this.nameplace = response.data.nameTrip

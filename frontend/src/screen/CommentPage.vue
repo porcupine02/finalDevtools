@@ -117,7 +117,7 @@ import axios from 'axios';
             comment : this.commentInput
         }
         console.log("folk")
-        axios.post('http://34.125.33.180:3001/comment', data)
+        axios.post('http://34.125.112.174:3001/comment', data)
         .then(response => {
           this.responseData = response.data;
 
@@ -134,7 +134,7 @@ import axios from 'axios';
         console.log("FOlk")
       try {
         
-        const response =  await axios.get('http://34.125.33.180:3001/comment');
+        const response =  await axios.get('http://34.125.112.174:3001/comment');
         this.comments = response.data; // Store the retrieved comments data in the 'comments' array
         console.log(this.comments)
         this.countText = this.comments.length

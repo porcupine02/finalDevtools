@@ -85,7 +85,7 @@ export default {
         };
 
         axios
-          .post("http://34.125.33.180:3001/register", data)
+          .post("http://34.125.112.174:3001/register", data)
           .then((response) => {
             this.responseData = response.data;
             this.$swal({

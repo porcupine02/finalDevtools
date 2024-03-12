@@ -138,7 +138,7 @@ export default {
   methods: {
     async performSearch() {
       try {
-        const response = await axios.get("http://34.125.33.180:3001/places");
+        const response = await axios.get("http://34.125.112.174:3001/places");
         const allTrips = response.data; // Assuming your data is in the 'data' property
 
         console.log("allTrips345: ", allTrips);
@@ -178,7 +178,7 @@ export default {
         nameTrip: this.nameTrip,
       };
 
-      axios.post("http://34.125.33.180:3001/trip", trip).then((res) => {
+      axios.post("http://34.125.112.174:3001/trip", trip).then((res) => {
         console.log("Response: ", res);
         console.log("Response: ", res.data);
         const tripId = res.data ? res.data.id : null;
